@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <div class="col-lg-16">
     <div class="card">
         <div class="card-header">
@@ -35,8 +36,8 @@
                                 <td>@Team.Work</td>
                                 <td><i class="@Team.TeamSocials.FirstOrDefault(x=>x.Id==Team.Id)"></i> </td>
                                 <td>
-                                    <a href="#" class="btn btn-success-soft btn-sm mr-1"><i class="far fa-eye"></i></a>
-                                    <button type="submit" asp-action="Delete"  asp-route-id="@Team.Id" href="#" class="btn btn-danger-soft btn-sm"><i  class="far fa-trash-alt"></i></button>
+                                    <a class="btn btn-success-soft btn-sm mr-1"><i class="far fa-eye"></i></a>
+                                    <a asp-action="Delete" asp-controller="Team" type="submit"  asp-route-id="@Team.Id"  class="btn btn-danger-soft btn-sm"><i  class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         }

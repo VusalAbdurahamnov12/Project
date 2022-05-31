@@ -37,19 +37,35 @@ namespace WebApplication2.Areas.Manage.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public  IActionResult Create(Team NewTeam)
+        public  IActionResult Create(Team NewTeam,TeamSocial teamSocial)
         {
             _context.Teams.Add(NewTeam);
+            _context.SaveChanges();
             _context.SaveChanges();
             return RedirectToAction("Create");
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public  IActionResult Delete(int id)
         {
             Team Team = _context.Teams.FirstOrDefault(x => x.Id == id);
             _context.Teams.Remove(Team);
             _context.SaveChanges();
             if (Team == null) return NotFound();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Update(Team team, int id)
+        {
+            Team ExistDb = _context.Teams.FirstOrDefault(x => x.Id == id);
+            if (ExistDb == null) return NotFound();
+            if (ExistDb.Id == team.Id)
+            {
+            ExistDb.Work = team.Work;
+            ExistDb.Name = team.Name;
+            ExistDb.Image = team.Image;
+            ExistDb.TeamSocials = team.TeamSocials;
+            }
+
             return RedirectToAction("Index");
         }
     }
