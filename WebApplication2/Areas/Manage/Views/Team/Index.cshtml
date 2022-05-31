@@ -1,0 +1,48 @@
+﻿@model HomeVm
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="col-lg-16">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="fs-18 font-weight-bold mb-0">Responsive tables</h2>
+        </div>
+        <div class="card-body">
+            <p>Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a <code>.table</code> with <code>.table-responsive</code>. Or, pick a maximum breakpoint with which to have a responsive table up to by using <code>.table-responsive{-sm|-md|-lg|-xl}</code>.</p>
+            <div class="table-responsive">
+                <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Work</th>
+                            <th>SocialAccounts</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Team in Model.Teams)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="@Team.Name">
+                                            <img src="~/bubble-studio/img/@Team.Image" class="avatar-img rounded-circle" alt="...">
+                                        </a>
+                                    </div>
+                                </td > 
+                                <td>@Team.Name</td>
+                                <td>@Team.Work</td>
+                                <td><i class="@Team.TeamSocials.FirstOrDefault(x=>x.Id==Team.Id)"></i> </td>
+                                <td>
+                                    <a href="#" class="btn btn-success-soft btn-sm mr-1"><i class="far fa-eye"></i></a>
+                                    <button type="submit" asp-action="Delete"  asp-route-id="@Team.Id" href="#" class="btn btn-danger-soft btn-sm"><i  class="far fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
